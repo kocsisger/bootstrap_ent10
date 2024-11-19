@@ -3,10 +3,12 @@ package hu.unideb.inf.bootstrap_en.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
+@Table(name = "persons")
 public class Person {
     @Id
     @GeneratedValue
