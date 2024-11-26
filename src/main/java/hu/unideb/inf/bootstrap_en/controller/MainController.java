@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -25,5 +27,23 @@ public class MainController {
         List<Person> personsList = personRepository.findAll();
         model.addAttribute("personsList", personsList);
         return "persons";
+    }
+
+    @GetMapping("/persons/new")
+    public String newPerson(Model model){
+        model.addAttribute("newPerson", new Person());
+        return "newPersonForm";
+    }
+
+    @PostMapping("/persons/save")
+    public String savePerson(Person newPerson){
+        personRepository.save(newPerson);
+        return "redirect:/persons";
+    }
+
+    @GetMapping("/persons/delete/{id}")
+    public String deletePersonById(@PathVariable Long id){
+        personRepository.deleteById(id);
+        return "redirect:/persons";
     }
 }
