@@ -2,34 +2,28 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css"
+          th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
     <title>Manage persons</title>
 </head>
 <body>
 <h1>Manage persons</h1>
-<table>
-    <thead>
+<table style="width:80%;margin: auto" class="table table-bordered">
+    <thead class="table-dark">
     <tr>
-        <th>Name</th>
-        <th>Instrument</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>email</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
-        <td>John Lennon</td>
-        <td>Rhythm Guitar</td>
+    <th:block th:each="person: ${personsList}">
+     <tr>
+        <td th:text="${person.firstName}">John</td>
+        <td th:text="${person.lastName}">Lennon</td>
+        <td th:text="${person.email}">jl@beatles.com</td>
     </tr>
-    <tr>
-        <td>Paul McCartney</td>
-        <td>Bass</td>
-    </tr>
-    <tr>
-        <td>George Harrison</td>
-        <td>Lead Guitar</td>
-    </tr>
-    <tr>
-        <td>Ringo Starr</td>
-        <td>Drums</td>
-    </tr>
+    </th:block>
     </tbody>
 </table>
 </body>
